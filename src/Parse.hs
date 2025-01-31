@@ -15,7 +15,7 @@ import qualified Text.Megaparsec.Char.Lexer as L
 type Parser = Parsec Void Text
 
 test :: Text -> IO ()
-test inputStr = parseTest (pUri <* eof) inputStr
+test = parseTest (pUri <* eof)
 
 data Scheme
   = SchemeData
@@ -37,7 +37,7 @@ pScheme = choice
   , SchemeIrc    <$ string "irc"
   , SchemeMailto <$ string "mailto" ]
 
-data Uri = Uri 
+data Uri = Uri
   { uriScheme :: Scheme
   , uriAuthority :: Maybe Authority
   , path :: Maybe Path
